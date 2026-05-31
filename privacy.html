@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-i18n="meta.titlePrivacy">개인정보 처리방침 — TRICK SHOT</title>
+  <meta name="description" content="TRICK SHOT 개인정보 처리방침">
+  <meta name="theme-color" content="#7cb8e8">
+  <link rel="icon" type="image/png" href="assets/game/app_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="brand" href="index.html" aria-label="TRICK SHOT home">
+          <span class="brand__logo">TRICK <span class="accent">SHOT</span></span>
+          <span class="badge">v1.0.0</span>
+        </a>
+        <div class="nav__right">
+          <ul class="nav__links">
+            <li><a href="index.html#stages" data-i18n="nav.stages">스테이지</a></li>
+            <li><a href="index.html#faq" data-i18n="nav.faq">FAQ</a></li>
+            <li><a href="patch-notes.html" data-i18n="nav.patch">패치 노트</a></li>
+            <li><a href="index.html#download" data-i18n="nav.download">다운로드</a></li>
+          </ul>
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+            <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+          </div>
+          <button class="gear-btn" type="button" aria-label="설정" data-i18n-attr="aria-label:nav.settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3.2"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/>
+            </svg>
+          </button>
+          <button class="nav__toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-menu" data-i18n-attr="aria-label:nav.menuOpen">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#stages" data-i18n="nav.stages">스테이지</a>
+    <a href="index.html#faq" data-i18n="nav.faq">FAQ</a>
+    <a href="patch-notes.html" data-i18n="nav.patch">패치 노트</a>
+    <a href="index.html#download" data-i18n="nav.download">다운로드</a>
+    <a class="btn btn--primary menu-cta" href="index.html#download" data-i18n="nav.download">다운로드</a>
+    <div class="mobile-menu__lang">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <h1 data-i18n="privacy.title">개인정보 처리방침</h1>
+        <p data-i18n="privacy.subtitle"></p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <a class="back-link" href="index.html">
+          <span aria-hidden="true">←</span> <span data-i18n="privacy.back">홈으로 돌아가기</span>
+        </a>
+        <div class="doc" id="privacy-doc"><!-- rendered by main.js --></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="brand__logo">TRICK <span class="accent">SHOT</span></span>
+          <p data-i18n="footer.desc"></p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.gameTitle">게임</h4>
+          <a href="index.html#features" data-i18n="footer.linkFeatures">특징</a>
+          <a href="index.html#stages" data-i18n="footer.linkStages">스테이지</a>
+          <a href="index.html#download" data-i18n="footer.linkDownload">다운로드</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.supportTitle">지원</h4>
+          <a href="index.html#faq" data-i18n="footer.linkFaq">FAQ</a>
+          <a href="mailto:support@trickshot.example" data-i18n="footer.linkContact">문의하기</a>
+          <a href="patch-notes.html" data-i18n="footer.linkPatch">패치 노트</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer.legalTitle">정책</h4>
+          <a href="privacy.html" data-i18n="footer.linkPrivacy">개인정보 처리방침</a>
+          <a href="#" data-i18n="footer.linkTerms">이용약관</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 TRICK SHOT Studio. All rights reserved.</span>
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" data-lang-btn="ko" aria-pressed="true">KO</button>
+          <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

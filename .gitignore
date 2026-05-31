@@ -1,0 +1,6 @@
+# Editor / tool-local state
+.omc/
+.claude/settings.local.json
+
+# OS files
+.DS_Store
