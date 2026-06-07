@@ -151,7 +151,7 @@ window.TS_I18N = {
     },
     hero: {
       tagline: "TAP AND DRAG TO SHOOT",
-      sub: "Drag the ball, aim for the hoop. A physics-based basketball trick-shot puzzle. Take on 42 stages across two themed maps: Forest and Small Town.",
+      sub: "Bounce off walls, clear obstacles, and go for shots that look impossible!<br>Feel the thrill of pulling off the perfect trick shot.",
       ctaPlay: "See Maps",
       ctaDownload: "Download",
     },
@@ -161,7 +161,7 @@ window.TS_I18N = {
       desc: "Anyone can start in one second — but the perfect shot takes a hundred tries.",
       items: [
         { icon: "touch",   title: "Drag to Shoot", desc: "Tap the ball and drag to set aim and power. A dotted trajectory line shows your arc — release to fire." },
-        { icon: "physics", title: "Real Physics",   desc: "Gravity, friction, and restitution all apply. Balls bounce off mushrooms, spring off springs, and get caught in spider webs." },
+        { icon: "physics", title: "Real Physics",   desc: "Gravity, friction, and restitution all apply. Watch the ball bounce off mushrooms, spring off springs, and ricochet off walls." },
         { icon: "stage",   title: "42 Stages",      desc: "Two themed maps — Forest and Small Town — each with 21 unique stages packed with creative obstacles." },
         { icon: "bonus",   title: "Bonus System",   desc: "Earn extra points with PERFECT SHOTs, animal hits, and coins. Chase that 3-star rating!" },
       ],
