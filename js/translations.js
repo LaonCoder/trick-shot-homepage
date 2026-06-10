@@ -29,12 +29,10 @@ window.TS_I18N = {
       eyebrow: "WHY TRICK SHOT",
       title: "단순하지만 깊이 있는 재미",
       desc: "누구나 1초 만에 시작할 수 있지만, 완벽한 슛을 위해선 수백 번의 도전이 필요합니다.",
-      items: [
-        { icon: "touch",   title: "드래그 슈팅",      desc: "공을 탭하고 드래그해 방향과 파워를 조절하세요. 흰 점선 궤적으로 예상 경로를 확인하며 완벽한 슛을 노려라." },
-        { icon: "physics", title: "실감나는 물리엔진", desc: "중력·마찰·반발력이 모두 적용된 리얼한 물리 시뮬레이션. 버섯·스프링·벽에 공이 현실적으로 반응한다." },
-        { icon: "stage",   title: "42개 스테이지",    desc: "Forest와 Small Town, 두 가지 테마 맵에 각 21개 스테이지. 독창적인 장애물이 가득하다." },
-        { icon: "bonus",   title: "다양한 보너스",     desc: "PERFECT SHOT·동물 히트·코인 수집으로 보너스 점수 획득. 3스타 달성을 목표로 도전하라." },
-      ],
+    },
+    gallery: {
+      prev: "이전 화면",
+      next: "다음 화면",
     },
     stages: {
       eyebrow: "MAPS",
@@ -159,12 +157,10 @@ window.TS_I18N = {
       eyebrow: "WHY TRICK SHOT",
       title: "Simple to play, deep to master",
       desc: "Anyone can start in one second — but the perfect shot takes a hundred tries.",
-      items: [
-        { icon: "touch",   title: "Drag to Shoot", desc: "Tap the ball and drag to set aim and power. A dotted trajectory line shows your arc — release to fire." },
-        { icon: "physics", title: "Real Physics",   desc: "Gravity, friction, and restitution all apply. Watch the ball bounce off mushrooms, spring off springs, and ricochet off walls." },
-        { icon: "stage",   title: "42 Stages",      desc: "Two themed maps — Forest and Small Town — each with 21 unique stages packed with creative obstacles." },
-        { icon: "bonus",   title: "Bonus System",   desc: "Earn extra points with PERFECT SHOTs, animal hits, and coins. Chase that 3-star rating!" },
-      ],
+    },
+    gallery: {
+      prev: "Previous screen",
+      next: "Next screen",
     },
     stages: {
       eyebrow: "MAPS",

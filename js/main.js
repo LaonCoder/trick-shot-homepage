@@ -626,6 +626,148 @@
     }
   }
 
+  /* ---- screenshot gallery (swipe between gameplay shots, loops, autoplay)
+     True infinite loop: a clone of the last slide is prepended and a clone
+     of the first slide is appended, so slide 6 → 1 (and 1 → 6) keeps
+     sliding in the same direction instead of jumping back. Once the
+     transition lands on a clone, we snap (no transition) to the matching
+     real slide so `pos` stays in [1, total].                              */
+  function initShotCarousel() {
+    var carousel = $(".shot-carousel");
+    var track = $("#shot-track");
+    var dotsWrap = $("#shot-dots");
+    var counter = $("#shot-counter-current");
+    if (!carousel || !track) return;
+    var realSlides = $$(".shot-slide", track);
+    var total = realSlides.length;
+    if (!total) return;
+    var DWELL_MS = 4500; // must match --shot-dwell in CSS
+    carousel.style.setProperty("--shot-dwell", DWELL_MS + "ms");
+
+    var firstClone = realSlides[0].cloneNode(true);
+    var lastClone = realSlides[total - 1].cloneNode(true);
+    firstClone.setAttribute("aria-hidden", "true");
+    lastClone.setAttribute("aria-hidden", "true");
+    track.insertBefore(lastClone, realSlides[0]);
+    track.appendChild(firstClone);
+
+    var pos = 1; // 1..total = real slides; 0 and total+1 = clones
+
+    var dots = [];
+    if (dotsWrap) {
+      dotsWrap.innerHTML = "";
+      realSlides.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "shot-dot";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-label", "Screenshot " + (i + 1));
+        b.addEventListener("click", function () { goTo(i); startAutoplay(); });
+        dotsWrap.appendChild(b);
+        dots.push(b);
+      });
+    }
+
+    function setTransform(animate) {
+      if (!animate) track.style.transition = "none";
+      track.style.transform = "translateX(" + (-pos * 100) + "%)";
+      if (!animate) {
+        void track.offsetWidth; // flush so the next transition re-enables cleanly
+        track.style.transition = "";
+      }
+    }
+
+    function updateIndicators() {
+      var logical = ((pos - 1) % total + total) % total;
+      dots.forEach(function (d) { d.classList.remove("on"); });
+      // force reflow so the progress-bar animation restarts from 0 on the new dot
+      void dotsWrap.offsetWidth;
+      if (dots[logical]) dots[logical].classList.add("on");
+      if (counter) counter.textContent = String(logical + 1);
+    }
+
+    function step(direction) {
+      // if mid-transition onto a clone (rapid input), snap back first
+      if (pos === 0) { pos = total; setTransform(false); }
+      else if (pos === total + 1) { pos = total + 1 - total; setTransform(false); } // = 1
+      pos += direction;
+      setTransform(true);
+      updateIndicators();
+    }
+
+    function goTo(i) {
+      pos = i + 1;
+      setTransform(true);
+      updateIndicators();
+    }
+
+    track.addEventListener("transitionend", function (e) {
+      if (e.propertyName !== "transform") return;
+      if (pos === 0) { pos = total; setTransform(false); }
+      else if (pos === total + 1) { pos = 1; setTransform(false); }
+    });
+
+    var timer = null;
+    var inView = true;
+    function startAutoplay() {
+      clearTimeout(timer);
+      if (!inView) return;
+      timer = setTimeout(function () {
+        step(1);
+        startAutoplay();
+      }, DWELL_MS);
+    }
+
+    var prev = $(".shot-nav--prev"), next = $(".shot-nav--next");
+    if (prev) prev.addEventListener("click", function () { step(-1); startAutoplay(); });
+    if (next) next.addEventListener("click", function () { step(1); startAutoplay(); });
+
+    var viewport = $(".shot-viewport");
+    if (viewport) {
+      var startX = 0, dragging = false;
+      viewport.addEventListener("pointerdown", function (e) {
+        dragging = true; startX = e.clientX;
+      });
+      viewport.addEventListener("pointerup", function (e) {
+        if (!dragging) return;
+        dragging = false;
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > 40) { step(dx < 0 ? 1 : -1); startAutoplay(); }
+      });
+      viewport.addEventListener("pointercancel", function () { dragging = false; });
+
+      viewport.setAttribute("tabindex", "0");
+      viewport.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { step(-1); startAutoplay(); }
+        else if (e.key === "ArrowRight") { step(1); startAutoplay(); }
+      });
+    }
+
+    // pause on hover (desktop) — progress bar freezes via CSS
+    carousel.addEventListener("mouseenter", function () {
+      carousel.classList.add("is-paused");
+      clearTimeout(timer);
+    });
+    carousel.addEventListener("mouseleave", function () {
+      carousel.classList.remove("is-paused");
+      updateIndicators();
+      startAutoplay();
+    });
+
+    // pause while the gallery is scrolled out of view
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (inView) { updateIndicators(); startAutoplay(); }
+        else clearTimeout(timer);
+      }, { threshold: 0.2 }).observe(carousel);
+    }
+
+    setTransform(false);
+    updateIndicators();
+    startAutoplay();
+  }
+
   /* ---- boot ------------------------------------------------------------- */
   document.addEventListener("DOMContentLoaded", function () {
     setupMenu();
@@ -637,6 +779,7 @@
     renderAll(window.i18n.getLang());
     initFlyerAnimation();
     initBirdAnimation();
+    initShotCarousel();
   });
 
   // re-render collections + re-apply static strings on language change

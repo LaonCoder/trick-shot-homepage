@@ -309,6 +309,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav__right { display: flex; align-items: center; gap: 8px; }
 .nav__links { display: none; }            /* shown on desktop */
 .nav__right > .lang-toggle { display: none; } /* moves into the menu on mobile */
+.nav__divider { display: none; }          /* shown on desktop, between links and lang toggle */
 
 .nav__links a {
   font-family: var(--pixel);
@@ -322,7 +323,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   white-space: nowrap;
   transition: color .15s ease, background .15s ease;
 }
-.nav__links a:hover { color: var(--ball-dark); background: #f1f7fd; }
+.nav__links a:hover { color: #2f6fb3; background: #f1f7fd; }
 
 .nav__links a.nav-link--patch {
   padding: 8px 10px;
@@ -339,8 +340,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .lang-toggle button {
   font-family: var(--pixel);
-  font-size: 10px;
-  padding: 7px 9px;
+  font-size: 12px;
+  padding: 8px 11px;
   border: 0;
   background: transparent;
   color: var(--navy);
@@ -604,46 +605,109 @@ body.menu-open { overflow: hidden; }
   color: #c9ccd1;
 }
 
-/* ---- Feature cards ----------------------------------------------------- */
-.features-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
+/* ---- Screenshot gallery (clean, modern swipe carousel) ------------------ */
+.shot-carousel {
+  position: relative;
+  max-width: 720px;
+  margin-inline: auto;
 }
-.feature {
-  background: var(--card);
-  border: 3px solid var(--navy);
-  border-radius: var(--radius);
-  box-shadow: var(--hard);
-  padding: 24px;
-  text-align: center;
+.shot-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(18, 42, 68, .18);
+  touch-action: pan-y;
+  outline: none;
 }
-.feature__icon {
+.shot-track {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform .5s cubic-bezier(.65, 0, .35, 1);
+}
+.shot-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  aspect-ratio: 4 / 3;
+}
+.shot-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* nav arrows — float in the gutter between the carousel and the screen
+   edges (centered in that gap); transparent until hovered, when a soft
+   frosted circle appears behind the icon */
+.shot-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
   width: 64px; height: 64px;
-  margin: 0 auto 16px;
   display: grid; place-items: center;
-  background: linear-gradient(180deg, #dcefff, #bfe0f7);
-  border: 3px solid var(--navy);
-  border-radius: 12px;
-  box-shadow: var(--hard-sm);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
 }
-.feature__icon img {
-  height: 36px;
-  width: auto;
-  max-width: 46px;
-  image-rendering: pixelated;
+.shot-nav--prev { left: calc(-1 * (100vw - 100%) / 4); transform: translate(-50%, -50%); }
+.shot-nav--next { right: calc(-1 * (100vw - 100%) / 4); transform: translate(50%, -50%); }
+.shot-nav img { width: 30px; height: auto; }
+.shot-nav:hover {
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px rgba(18, 42, 68, .2);
 }
-.feature h3 {
+.shot-nav--prev:hover { transform: translate(-50%, -50%) scale(1.06); }
+.shot-nav--next:hover { transform: translate(50%, -50%) scale(1.06); }
+.shot-nav--prev:active { transform: translate(-50%, -50%) scale(.96); }
+.shot-nav--next:active { transform: translate(50%, -50%) scale(.96); }
+
+/* slide counter — frosted "1 / 6" badge, top-right of the image */
+.shot-counter {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 2;
   font-family: var(--pixel);
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--navy);
-  margin: 0 0 10px;
-  line-height: 1.6;
+  font-size: 11px;
   letter-spacing: 0;
-  word-spacing: -0.1em;
+  color: var(--navy);
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 5px 11px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(18, 42, 68, .15);
 }
-.feature p { margin: 0; font-family: var(--sans-body); color: var(--ink-soft); font-size: 14px; }
+
+/* dots — autoplay progress bars; the active one fills over the dwell time */
+.shot-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+.shot-dot {
+  position: relative;
+  width: 28px; height: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  cursor: pointer;
+}
+.shot-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: var(--ball);
+  border-radius: inherit;
+}
+.shot-dot.on::after { animation: shot-progress var(--shot-dwell, 4.5s) linear forwards; }
+.shot-carousel.is-paused .shot-dot.on::after { animation-play-state: paused; }
+@keyframes shot-progress {
+  from { width: 0; }
+  to   { width: 100%; }
+}
 
 /* ---- Stages ------------------------------------------------------------ */
 .stages-grid {
@@ -1069,13 +1133,11 @@ html[lang="en"] .store-badge--en { display: block; }
 
 /* ===== Responsive ======================================================= */
 @media (min-width: 640px) {
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
   .stages-grid   { grid-template-columns: repeat(2, 1fr); }
   .footer-grid   { grid-template-columns: 1.4fr 1fr 1fr; }
 }
 
 @media (min-width: 900px) {
-  .features-grid { grid-template-columns: repeat(4, 1fr); }
   .stages-grid   { grid-template-columns: repeat(3, 1fr); }
   .stages-grid--maps { grid-template-columns: repeat(2, 1fr); }
   .footer-grid   { grid-template-columns: 2fr 1fr 1fr 1fr; }
@@ -1085,8 +1147,19 @@ html[lang="en"] .store-badge--en { display: block; }
 @media (min-width: 860px) {
   .nav__toggle { display: none; }
   .mobile-menu { display: none; }
+  .nav__right { gap: 18px; }
   .nav__links { display: flex; align-items: center; gap: 4px; }
   .nav__right > .lang-toggle { display: inline-flex; }
+  .nav__divider {
+    display: block;
+    width: 2px;
+    height: 26px;
+    /* the preceding nav link already has 10px of right padding, so add the
+       same amount on this side to balance the gap before/after the divider */
+    margin-right: 10px;
+    background: var(--line);
+    border-radius: 1px;
+  }
 }
 
 @media (min-width: 1100px) {
