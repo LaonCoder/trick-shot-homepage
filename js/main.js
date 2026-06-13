@@ -636,13 +636,11 @@
     var carousel = $(".shot-carousel");
     var track = $("#shot-track");
     var dotsWrap = $("#shot-dots");
-    var counter = $("#shot-counter-current");
     if (!carousel || !track) return;
     var realSlides = $$(".shot-slide", track);
     var total = realSlides.length;
     if (!total) return;
-    var DWELL_MS = 4500; // must match --shot-dwell in CSS
-    carousel.style.setProperty("--shot-dwell", DWELL_MS + "ms");
+    var DWELL_MS = 4500;
 
     var firstClone = realSlides[0].cloneNode(true);
     var lastClone = realSlides[total - 1].cloneNode(true);
@@ -680,10 +678,7 @@
     function updateIndicators() {
       var logical = ((pos - 1) % total + total) % total;
       dots.forEach(function (d) { d.classList.remove("on"); });
-      // force reflow so the progress-bar animation restarts from 0 on the new dot
-      void dotsWrap.offsetWidth;
       if (dots[logical]) dots[logical].classList.add("on");
-      if (counter) counter.textContent = String(logical + 1);
     }
 
     function step(direction) {
@@ -743,14 +738,11 @@
       });
     }
 
-    // pause on hover (desktop) — progress bar freezes via CSS
+    // pause on hover (desktop)
     carousel.addEventListener("mouseenter", function () {
-      carousel.classList.add("is-paused");
       clearTimeout(timer);
     });
     carousel.addEventListener("mouseleave", function () {
-      carousel.classList.remove("is-paused");
-      updateIndicators();
       startAutoplay();
     });
 

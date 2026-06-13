@@ -150,6 +150,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-family: var(--sans-body);
   font-size: clamp(14px, 2vw, 16px);
 }
+#features .section-head { margin-bottom: clamp(42px, 6.5vw, 72px); }
+#features .section-head h2 { font-size: clamp(23px, 5.2vw, 36px); margin-bottom: 26px; }
+#features .section-head p  { font-size: clamp(15px, 2.2vw, 18px); max-width: 68ch; }
 .eyebrow {
   display: inline-block;
   font-family: var(--pixel);
@@ -608,13 +611,13 @@ body.menu-open { overflow: hidden; }
 /* ---- Screenshot gallery (clean, modern swipe carousel) ------------------ */
 .shot-carousel {
   position: relative;
-  max-width: 720px;
+  max-width: 860px;
   margin-inline: auto;
 }
 .shot-viewport {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 17px;
   box-shadow: 0 16px 40px rgba(18, 42, 68, .18);
   touch-action: pan-y;
   outline: none;
@@ -627,7 +630,7 @@ body.menu-open { overflow: hidden; }
 .shot-slide {
   flex: 0 0 100%;
   min-width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1920 / 1354;
 }
 .shot-slide img {
   display: block;
@@ -637,8 +640,8 @@ body.menu-open { overflow: hidden; }
 }
 
 /* nav arrows — float in the gutter between the carousel and the screen
-   edges (centered in that gap); transparent until hovered, when a soft
-   frosted circle appears behind the icon */
+   edges (centered in that gap); transparent background, icon casts a
+   soft shadow and grows on hover */
 .shot-nav {
   position: absolute;
   top: 50%;
@@ -649,64 +652,40 @@ body.menu-open { overflow: hidden; }
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
-  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+  transition: transform .15s ease;
 }
 .shot-nav--prev { left: calc(-1 * (100vw - 100%) / 4); transform: translate(-50%, -50%); }
 .shot-nav--next { right: calc(-1 * (100vw - 100%) / 4); transform: translate(50%, -50%); }
-.shot-nav img { width: 30px; height: auto; }
-.shot-nav:hover {
-  background: rgba(255, 255, 255, .7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 4px 14px rgba(18, 42, 68, .2);
-}
-.shot-nav--prev:hover { transform: translate(-50%, -50%) scale(1.06); }
-.shot-nav--next:hover { transform: translate(50%, -50%) scale(1.06); }
+.shot-nav img { width: 30px; height: auto; filter: drop-shadow(0 3px 3px rgba(18, 42, 68, .25)); }
+.shot-nav--prev:hover { transform: translate(-50%, -50%) scale(1.2); }
+.shot-nav--next:hover { transform: translate(50%, -50%) scale(1.2); }
 .shot-nav--prev:active { transform: translate(-50%, -50%) scale(.96); }
 .shot-nav--next:active { transform: translate(50%, -50%) scale(.96); }
 
-/* slide counter — frosted "1 / 6" badge, top-right of the image */
-.shot-counter {
-  position: absolute;
-  top: 14px; right: 14px;
-  z-index: 2;
-  font-family: var(--pixel);
-  font-size: 11px;
-  letter-spacing: 0;
-  color: var(--navy);
-  background: rgba(255, 255, 255, .7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 5px 11px;
-  border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(18, 42, 68, .15);
+/* narrower screens: the gutter beside the carousel shrinks to nothing,
+   so shrink the carousel itself to free up a fixed gap for the arrows */
+@media (max-width: 920px) {
+  .shot-carousel { max-width: calc(100% - 80px); }
+  .shot-nav { width: 44px; height: 44px; }
+  .shot-nav img { width: 20px; }
+  .shot-nav--prev { left: -36px; }
+  .shot-nav--next { right: -36px; }
 }
 
-/* dots — autoplay progress bars; the active one fills over the dwell time */
-.shot-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+/* dots — simple circular page indicators */
+.shot-dots { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
 .shot-dot {
-  position: relative;
-  width: 28px; height: 5px;
+  width: 10px; height: 10px;
   padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: var(--line);
-  overflow: hidden;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
   cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
 }
-.shot-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 0;
-  background: var(--ball);
-  border-radius: inherit;
-}
-.shot-dot.on::after { animation: shot-progress var(--shot-dwell, 4.5s) linear forwards; }
-.shot-carousel.is-paused .shot-dot.on::after { animation-play-state: paused; }
-@keyframes shot-progress {
-  from { width: 0; }
-  to   { width: 100%; }
+.shot-dot.on {
+  background: var(--navy);
+  border-color: var(--navy);
 }
 
 /* ---- Stages ------------------------------------------------------------ */

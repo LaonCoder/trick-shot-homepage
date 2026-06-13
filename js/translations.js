@@ -26,9 +26,8 @@ window.TS_I18N = {
       ctaDownload: "지금 바로 다운로드",
     },
     features: {
-      eyebrow: "WHY TRICK SHOT",
-      title: "단순하지만 깊이 있는 재미",
-      desc: "누구나 1초 만에 시작할 수 있지만, 완벽한 슛을 위해선 수백 번의 도전이 필요합니다.",
+      title: "매 스테이지마다 펼쳐지는 새로운 도전",
+      desc: "수십 가지의 개성 넘치는 스테이지와 다양한 장애물들이 기다립니다.<br>창의적인 플레이로 당신만의 트릭샷을 완성해보세요.",
     },
     gallery: {
       prev: "이전 화면",
@@ -154,9 +153,8 @@ window.TS_I18N = {
       ctaDownload: "Download",
     },
     features: {
-      eyebrow: "WHY TRICK SHOT",
-      title: "Simple to play, deep to master",
-      desc: "Anyone can start in one second — but the perfect shot takes a hundred tries.",
+      title: "A New Challenge Unfolds in Every Stage",
+      desc: "Dozens of distinctive stages and a variety of obstacles await you.<br>Bring your creative plays to life and craft your own perfect trick shot.",
     },
     gallery: {
       prev: "Previous screen",
