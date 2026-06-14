@@ -102,12 +102,13 @@
     }
   }
 
-  function renderPrivacy(lang) {
-    var doc = $("#privacy-doc");
+  function renderDoc(containerId, key, lang) {
+    var doc = $(containerId);
     if (!doc) return;
-    var pv = window.i18n.t("privacy", lang);
-    doc.innerHTML = '<p class="updated">' + esc(pv.updated) + '</p>';
-    pv.sections.forEach(function (sec) {
+    var data = window.i18n.t(key, lang);
+    if (!data || !data.sections) return;
+    doc.innerHTML = '<p class="updated">' + esc(data.updated) + '</p>';
+    data.sections.forEach(function (sec) {
       var s = document.createElement("section");
       var h = document.createElement("h2");
       h.textContent = sec.h;
@@ -128,7 +129,8 @@
   function renderAll(lang) {
     renderFaq(lang);
     renderPatch(lang);
-    renderPrivacy(lang);
+    renderDoc("#privacy-doc", "privacy", lang);
+    renderDoc("#terms-doc", "terms", lang);
     observeReveals();
   }
 

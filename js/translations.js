@@ -12,6 +12,7 @@ window.TS_I18N = {
     meta: {
       titleHome:    "TRICK SHOT — 드래그하고 골인! 물리 기반 트릭샷",
       titlePrivacy: "개인정보 처리방침 — TRICK SHOT",
+      titleTerms:   "이용약관 — TRICK SHOT",
       titlePatch:   "패치 노트 — TRICK SHOT",
     },
     nav: {
@@ -68,7 +69,8 @@ window.TS_I18N = {
       linkFeatures: "특징", linkStages: "맵", linkDownload: "다운로드",
       linkFaq: "FAQ", linkContact: "문의하기", linkPatch: "패치 노트",
       linkPrivacy: "개인정보 처리방침", linkTerms: "이용약관",
-      rights: "© 2026 TRICK SHOT. All rights reserved.",
+      linkOss: "오픈소스 라이센스",
+      rights: "© 2026 LaonPixels. All rights reserved.",
       langLabel: "언어",
     },
     privacy: {
@@ -86,6 +88,24 @@ window.TS_I18N = {
         { h: "7. 이용자의 권리", body: "<p>이용자는 앱을 삭제함으로써 모든 로컬 게임 데이터를 즉시 삭제할 수 있습니다. 기타 개인정보 관련 문의는 아래 문의처로 연락해 주세요.</p>" },
         { h: "8. 정책의 변경", body: "<p>본 방침은 서비스 변경에 따라 수정될 수 있으며, 변경 시 앱 내 공지 또는 본 페이지를 통해 사전 안내합니다.</p>" },
         { h: "9. 문의처", body: "<p>개인정보 관련 문의는 아래로 연락해 주시기 바랍니다.</p><p><strong>이메일:</strong> laonpixels@gmail.com</p>" },
+      ],
+    },
+    terms: {
+      title: "이용약관",
+      subtitle: "TRICK SHOT 이용에 관한 약관입니다.",
+      back: "홈으로 돌아가기",
+      updated: "최종 수정일: 2026년 5월 31일",
+      sections: [
+        { h: "1. 약관의 동의", body: "<p>본 약관은 TRICK SHOT(이하 &#8216;앱&#8217;) 이용에 관한 조건을 규정합니다. 앱을 다운로드하거나 이용하는 경우 본 약관에 동의한 것으로 간주됩니다. 약관에 동의하지 않는 경우 앱 이용을 중단해 주시기 바랍니다.</p>" },
+        { h: "2. 서비스 내용", body: "<p>TRICK SHOT은 물리 기반의 원터치 농구 트릭샷 퍼즐 게임입니다. 개발자는 서비스 품질 향상을 위해 게임 콘텐츠를 추가하거나 변경할 수 있으며, 일부 기능은 사전 고지 없이 수정될 수 있습니다.</p>" },
+        { h: "3. 이용자의 의무", body: "<p>이용자는 다음 행위를 해서는 안 됩니다.</p><ul><li>앱을 역설계, 디컴파일하거나 무단으로 수정하는 행위</li><li>비정상적인 방법으로 게임 데이터를 변조하는 행위</li><li>관련 법령 또는 공공질서에 반하는 목적으로 앱을 이용하는 행위</li></ul>" },
+        { h: "4. 결제 및 환불", body: "<p>TRICK SHOT은 현재 무료로 제공됩니다. 추후 인앱 결제 또는 유료 콘텐츠가 도입될 경우, 결제 및 환불 정책은 해당 앱 마켓(App Store, Google Play 등)의 정책을 따릅니다.</p>" },
+        { h: "5. 지식재산권", body: "<p>앱에 포함된 그래픽, 사운드, 코드 등 모든 콘텐츠에 대한 저작권 및 지식재산권은 개발자에게 귀속됩니다. 이용자는 개발자의 사전 서면 동의 없이 이를 복제, 배포, 상업적으로 이용할 수 없습니다.</p>" },
+        { h: "6. 면책 조항", body: "<p>앱은 &#8216;있는 그대로(as is)&#8217; 제공되며, 개발자는 앱이 오류 없이 작동하거나 특정 목적에 적합함을 보증하지 않습니다. 기기 환경에 따라 일부 기능이 정상 동작하지 않을 수 있습니다.</p>" },
+        { h: "7. 책임의 제한", body: "<p>관련 법령이 허용하는 범위 내에서, 개발자는 앱 이용 또는 이용 불능으로 인해 발생한 직접적·간접적 손해에 대해 책임을 지지 않습니다.</p>" },
+        { h: "8. 약관의 변경", body: "<p>본 약관은 서비스 변경 또는 관련 법령 개정에 따라 수정될 수 있으며, 변경 시 앱 내 공지 또는 본 페이지를 통해 사전 안내합니다. 변경된 약관은 공지된 시점부터 효력이 발생합니다.</p>" },
+        { h: "9. 준거법", body: "<p>본 약관은 대한민국 법령에 따라 해석되며, 앱 이용과 관련하여 분쟁이 발생할 경우 관련 법령이 정하는 절차에 따릅니다.</p>" },
+        { h: "10. 문의처", body: "<p>약관 관련 문의는 아래로 연락해 주시기 바랍니다.</p><p><strong>이메일:</strong> laonpixels@gmail.com</p>" },
       ],
     },
     patch: {
@@ -121,6 +141,7 @@ window.TS_I18N = {
     meta: {
       titleHome:    "TRICK SHOT — Drag, aim, and swish!",
       titlePrivacy: "Privacy Policy — TRICK SHOT",
+      titleTerms:   "Terms of Service — TRICK SHOT",
       titlePatch:   "Patch Notes — TRICK SHOT",
     },
     nav: {
@@ -177,7 +198,8 @@ window.TS_I18N = {
       linkFeatures: "Features", linkStages: "Maps", linkDownload: "Download",
       linkFaq: "FAQ", linkContact: "Contact", linkPatch: "Patch Notes",
       linkPrivacy: "Privacy Policy", linkTerms: "Terms of Service",
-      rights: "© 2026 TRICK SHOT. All rights reserved.",
+      linkOss: "Open-Source Licenses",
+      rights: "© 2026 LaonPixels. All rights reserved.",
       langLabel: "Language",
     },
     privacy: {
@@ -189,12 +211,30 @@ window.TS_I18N = {
         { h: "1. Overview", body: "<p>The developer of TRICK SHOT (the \"App\") is committed to protecting user privacy. This policy explains how information is handled when you use the App.</p>" },
         { h: "2. Information we collect", body: "<p>TRICK SHOT collects only the minimum necessary information.</p><ul><li><strong>On-device storage:</strong> Stage progress, star ratings and game settings are stored locally on your device and are never sent to any external server.</li><li><strong>Inquiry info (optional):</strong> Email address and message content when contacting support.</li></ul>" },
         { h: "3. How we use information", body: "<ul><li>Saving and restoring game progress</li><li>Fixing bugs and improving the App</li><li>Responding to support inquiries</li></ul>" },
-        { h: "4. Sharing &amp; third parties", body: "<p>We do not sell or share your personal information with third parties. The App does not communicate with external servers — all game data is stored locally on your device.</p>" },
+        { h: "4. Sharing & third parties", body: "<p>We do not sell or share your personal information with third parties. The App does not communicate with external servers — all game data is stored locally on your device.</p>" },
         { h: "5. Data retention", body: "<p>Game progress data is kept on your device until you delete the App. Uninstalling the App removes all local data immediately. Support correspondence is deleted within one year of resolution.</p>" },
         { h: "6. Children's privacy", body: "<p>TRICK SHOT has no account system and collects minimal data, making it safe for players of all ages.</p>" },
         { h: "7. Your rights", body: "<p>You can delete all local game data at any time by uninstalling the App. For other privacy-related requests, please use the contact below.</p>" },
         { h: "8. Changes to this policy", body: "<p>This policy may be updated when the App changes. We will give advance notice through the App or this page.</p>" },
         { h: "9. Contact", body: "<p>For privacy inquiries, please reach us at:</p><p><strong>Email:</strong> laonpixels@gmail.com</p>" },
+      ],
+    },
+    terms: {
+      title: "Terms of Service",
+      subtitle: "The terms that govern your use of TRICK SHOT.",
+      back: "Back to home",
+      updated: "Last updated: May 31, 2026",
+      sections: [
+        { h: "1. Acceptance of terms", body: "<p>These terms govern your use of TRICK SHOT (the \"App\"). By downloading or using the App, you agree to these terms. If you do not agree, please discontinue use of the App.</p>" },
+        { h: "2. The service", body: "<p>TRICK SHOT is a physics-based, one-touch basketball trick-shot puzzle game. The developer may add or change game content to improve the service, and some features may be modified without prior notice.</p>" },
+        { h: "3. User responsibilities", body: "<p>You agree not to:</p><ul><li>Reverse-engineer, decompile, or modify the App without authorization</li><li>Tamper with game data through abnormal means</li><li>Use the App for any purpose that violates applicable laws or public order</li></ul>" },
+        { h: "4. Payments & refunds", body: "<p>TRICK SHOT is currently provided free of charge. If in-app purchases or paid content are introduced in the future, payment and refund handling will follow the policies of the relevant app marketplace (App Store, Google Play, etc.).</p>" },
+        { h: "5. Intellectual property", body: "<p>All content in the App — including graphics, sound, and code — is owned by the developer and protected by copyright and intellectual property rights. You may not reproduce, distribute, or commercially exploit it without the developer's prior written consent.</p>" },
+        { h: "6. Disclaimer", body: "<p>The App is provided \"as is.\" The developer does not warrant that the App will be error-free or fit for a particular purpose. Some features may not work correctly depending on your device environment.</p>" },
+        { h: "7. Limitation of liability", body: "<p>To the extent permitted by applicable law, the developer is not liable for any direct or indirect damages arising from your use of, or inability to use, the App.</p>" },
+        { h: "8. Changes to these terms", body: "<p>These terms may be updated when the service changes or relevant laws are revised. We will give advance notice through the App or this page, and updated terms take effect when posted.</p>" },
+        { h: "9. Governing law", body: "<p>These terms are interpreted under the laws of the Republic of Korea, and any disputes related to use of the App will be handled according to the procedures set by applicable law.</p>" },
+        { h: "10. Contact", body: "<p>For questions about these terms, please reach us at:</p><p><strong>Email:</strong> laonpixels@gmail.com</p>" },
       ],
     },
     patch: {
