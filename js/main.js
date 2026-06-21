@@ -37,41 +37,48 @@
     return String(version).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   }
 
-  function patchChangeGroup(type, label, items) {
-    var lis = items.map(function (it) {
+  // build a (possibly nested) bullet list; an item is a plain string or an
+  // object { text, items: [...] } for sub-bullets
+  function patchItemList(items) {
+    var lis = (items || []).map(function (it) {
+      if (it && typeof it === "object") {
+        var sub = (it.items && it.items.length) ? patchItemList(it.items) : "";
+        return '<li>' + esc(it.text || "") + sub + '</li>';
+      }
       var li = document.createElement("li");
       li.textContent = it;
       return li.outerHTML;
     }).join("");
+    return '<ul>' + lis + '</ul>';
+  }
+
+  function patchChangeGroup(label, items) {
     return '' +
       '<div class="change-group">' +
-        '<h4><span class="dot dot--' + type + '"></span>' + esc(label) + '</h4>' +
-        '<ul>' + lis + '</ul>' +
+        '<h4>' + esc(label) + '</h4>' +
+        patchItemList(items) +
       '</div>';
   }
 
   function patchDetailHTML(rel, p) {
     var groups = (rel.groups || []).map(function (g) {
-      return patchChangeGroup(g.type, p.legend[g.type], g.items);
+      return patchChangeGroup(p.legend[g.type], g.items);
     }).join("");
-    var issues = (rel.knownIssues && rel.knownIssues.length)
-      ? patchChangeGroup("issue", p.legend.issue, rel.knownIssues) : "";
     var intro = rel.intro ? '<p class="release__intro">' + esc(rel.intro) + '</p>' : "";
     var outro = rel.outro ? '<p class="release__outro">' + esc(rel.outro) + '</p>' : "";
     var thumb = rel.thumb
       ? '<div class="patch-article__thumb"><img src="' + esc(rel.thumb) + '" alt=""></div>' : "";
+    var metaLine = rel.date
+      ? '<p class="patch-article__date">' + esc(rel.date) + '</p>' : "";
     return '' +
       '<a class="back-link" href="#" data-patch-back><span aria-hidden="true">&lt;</span> <span>' + esc(p.backToList || "") + '</span></a>' +
       '<article class="patch-article">' +
         thumb +
         '<h1 class="patch-article__title">' + esc(rel.cardTitle || rel.version) + '</h1>' +
-        '<div class="patch-article__meta">' +
-          '<span class="release__ver">' + esc(rel.version) + '</span>' +
-          (rel.tag ? '<span class="release__tag">' + esc(rel.tag) + '</span>' : '') +
-          '<span class="release__date">' + esc(rel.date) + '</span>' +
-        '</div>' +
+        metaLine +
+        '<hr class="patch-article__rule">' +
         intro +
-        '<div class="changelog">' + groups + issues + '</div>' +
+        '<div class="changelog">' + groups + '</div>' +
         outro +
       '</article>';
   }

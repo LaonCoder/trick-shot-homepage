@@ -23,6 +23,8 @@ python3 -m http.server 8000
 .
 ├── index.html          # 메인 랜딩 (단일 스크롤: 히어로·특징·스테이지·FAQ·다운로드)
 ├── privacy.html        # 개인정보 처리방침
+├── terms.html          # 이용약관
+├── oss-license.html    # 오픈소스 라이선스
 ├── patch-notes.html    # 패치 노트
 ├── css/styles.css      # 디자인 토큰 + 전체 스타일 + 반응형
 ├── js/
@@ -30,8 +32,10 @@ python3 -m http.server 8000
 │   ├── i18n.js         # 언어 전환 엔진 (data-i18n 적용, localStorage 저장)
 │   └── main.js         # 메뉴·아코디언·스크롤 리빌·동적 콘텐츠 렌더링
 └── assets/
-    ├── skyline.svg     # 히어로 도시 스카이라인 실루엣
-    └── favicon.svg     # 농구공 파비콘
+    ├── fonts/          # 픽셀 폰트 (NeoDunggeunmo, Galmuri11/Bold)
+    ├── game/           # 게임 아트 (히어로·스테이지·파티클·스토어 배지 등)
+    ├── patch/          # 패치 노트 썸네일
+    └── screenshots/    # 스크린샷
 ```
 
 ## 콘텐츠 교체하기
