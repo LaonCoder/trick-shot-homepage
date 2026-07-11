@@ -656,6 +656,7 @@ body.menu-open { overflow: hidden; }
 #stages .section-head { margin-bottom: clamp(4px, 1vw, 12px); }
 #stages .section-head h2 { font-size: clamp(26px, 5.8vw, 40px); margin-bottom: 26px; }
 #stages .section-head p  { font-size: clamp(15px, 2.2vw, 18px); max-width: 68ch; }
+#stages .section-head p a { color: var(--navy); font-weight: 700; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
 
 #faq .section-head h2 { font-size: clamp(26px, 5.8vw, 40px); margin-bottom: 26px; }
 #faq .section-head p  { font-size: clamp(15px, 2.2vw, 18px); max-width: 68ch; }
@@ -705,6 +706,7 @@ body.menu-open { overflow: hidden; }
   aspect-ratio: 1;
   transition: transform .15s ease;
   cursor: pointer;
+  isolation: isolate;   /* contain the star burst's negative z-index */
 }
 .stages-placeholder__stack:hover { transform: scale(1.1); }
 
@@ -728,6 +730,29 @@ body.menu-open { overflow: hidden; }
   filter: drop-shadow(0 2px 4px rgba(18, 42, 68, .45));
   transition: opacity .3s ease;
 }
+/* star-burst layer: sits *behind* the map button (negative z-index within
+   the stack's isolated stacking context) and lets stars arc past the box
+   edges; stars are spawned/animated by burstStars() in main.js */
+.stages-stars {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: -1;
+}
+.stages-star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 21px;
+  background-image: url("../assets/game/stage_clear_star_sprite.png");
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  filter: drop-shadow(0 1px 2px rgba(18, 42, 68, .45));
+}
+
 .stages-placeholder__img--locked { opacity: 1; }
 .stages-placeholder__img--soon { opacity: 0; }
 .stages-placeholder__stack:hover .stages-placeholder__img--locked { opacity: 0; }

@@ -36,7 +36,7 @@ window.TS_I18N = {
     },
     stages: {
       title: "계속해서 추가되는 다양한 맵",
-      desc: "업데이트를 통해 추가되는 맵들을 만나보세요.<br>자세한 내용은 패치 노트를 참고해주세요.",
+      desc: "업데이트를 통해 추가되는 맵들을 만나보세요.<br>자세한 내용은 <a href=\"patch-notes.html\">패치 노트</a>를 참고해주세요.",
     },
     faq: {
       title: "자주 묻는 질문",
@@ -176,7 +176,7 @@ window.TS_I18N = {
     },
     stages: {
       title: "More Maps, Always on the Way",
-      desc: "Meet new maps added through updates.<br>Check the patch notes for details.",
+      desc: "Meet new maps added through updates.<br>Check the <a href=\"patch-notes.html\">patch notes</a> for details.",
     },
     faq: {
       title: "FAQ",
