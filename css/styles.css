@@ -293,6 +293,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-header.is-revealed .nav__reveal .brand__wordmark {
   transform: translateX(0);
 }
+/* while the mobile menu is open, keep the title revealed no matter the
+   scroll position; closing the menu reverts to the scroll-driven state
+   above (shown only if scrolled past the hero) */
+.nav.is-open .nav__reveal {
+  width: min(246px, 49vw);
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav.is-open .nav__reveal .brand__wordmark {
+  transform: translateX(0);
+}
 
 /* right cluster */
 .nav__right { display: flex; align-items: center; gap: 8px; }
