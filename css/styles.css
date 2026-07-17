@@ -1186,14 +1186,32 @@ html[lang="en"] .store-badge--en { display: block; }
   border-top: 1px solid var(--line);
   margin: 0 0 24px;
 }
-
-.release__intro { margin: 0 0 28px; color: var(--ink); font-weight: 600; font-size: 17px; }
-.release__outro {
-  margin: 32px 0 0;
-  padding-top: 18px;
+.patch-article__section-title {
+  margin: 8px 0 2px;
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.patch-article__divider {
+  border: 0;
   border-top: 1px solid var(--line);
+  margin: 4px 0 8px;
+}
+
+.release__intro { margin: 0 0 14px; color: var(--ink); font-weight: 400; font-size: 16px; line-height: 1.7; }
+.release__intro:first-of-type { font-weight: 600; font-size: 17px; }
+.release__intro:last-of-type { margin-bottom: 28px; }
+.release__outro {
+  margin: 0;
   color: var(--ink-soft);
   font-size: 15px;
+  line-height: 1.7;
+}
+.release__outro:first-of-type {
+  margin-top: 32px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 .changelog { display: grid; gap: 30px; }
 .change-group h4 {
