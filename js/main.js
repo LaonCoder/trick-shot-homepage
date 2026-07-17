@@ -930,8 +930,7 @@
       particles.appendChild(img);
     }
 
-    // clicking the map button shakes it, like it's refusing to open yet,
-    // and bursts a spray of pixel stars out of the box in all directions
+    // clicking the map button shakes it, like it's refusing to open yet
     var stack = $(".stages-placeholder__stack", section);
     var placeholder = $(".stages-placeholder", section);
     if (stack && placeholder) {
@@ -939,87 +938,11 @@
         placeholder.classList.remove("shake");
         void placeholder.offsetWidth; // restart animation if already running
         placeholder.classList.add("shake");
-        burstStars(stack);
       });
       placeholder.addEventListener("animationend", function () {
         placeholder.classList.remove("shake");
       });
     }
-  }
-
-  /* Star burst: spawn a handful of pixel stars at the box centre, launch
-     them radially with randomized speed, then let gravity pull each into
-     its own parabola while they spin, shrink and fade. Pure rAF physics,
-     no dependencies. Skipped entirely when reduced motion is preferred.   */
-  function burstStars(stack) {
-    if (window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    var layer = $(".stages-stars", stack);
-    if (!layer) {
-      layer = document.createElement("div");
-      layer.className = "stages-stars";
-      layer.setAttribute("aria-hidden", "true");
-      stack.appendChild(layer);
-    }
-
-    var FRAMES = 8;                       // 8 star frames in the 160x21 sheet
-    var count = 6 + Math.floor(Math.random() * 7);    // 6–12 stars
-    var gravity = 700;                    // px/s^2 (gentle, slow fall)
-    var stars = [];
-
-    for (var i = 0; i < count; i++) {
-      var el = document.createElement("span");
-      el.className = "px stages-star";
-      // pick one of the 8 star frames for variety
-      el.style.backgroundPosition = (-(i % FRAMES) * 20) + "px 0";
-      layer.appendChild(el);
-
-      // full 360° spread, biased slightly upward so the arc reads as a pop
-      var angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-      var speed = 170 + Math.random() * 170;          // 170–340 px/s
-      stars.push({
-        el: el,
-        x: 0, y: 0,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 170,            // upward launch bias
-        rot: Math.random() * 360,
-        vr: (Math.random() - 0.5) * 480,              // deg/s spin
-        life: 0,
-        ttl: 1.2 + Math.random() * 0.5               // 1.2–1.7s
-      });
-    }
-
-    var last = null;
-    function tick(now) {
-      if (last === null) last = now;
-      var dt = Math.min((now - last) / 1000, 0.05);   // clamp long frames
-      last = now;
-
-      var alive = 0;
-      for (var j = 0; j < stars.length; j++) {
-        var s = stars[j];
-        if (!s.el) continue;
-        s.life += dt;
-        if (s.life >= s.ttl) { s.el.remove(); s.el = null; continue; }
-        alive++;
-
-        s.vy += gravity * dt;
-        s.x += s.vx * dt;
-        s.y += s.vy * dt;
-        s.rot += s.vr * dt;
-
-        var p = s.life / s.ttl;
-        var scale = 2 - p * 1.4;                       // 2x -> ~0.6x
-        s.el.style.opacity = p < 0.7 ? 1 : (1 - (p - 0.7) / 0.3);
-        s.el.style.transform =
-          "translate(-50%, -50%) translate(" + s.x + "px," + s.y + "px) " +
-          "rotate(" + s.rot + "deg) scale(" + scale + ")";
-      }
-
-      if (alive) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
   }
 
   /* ---- boot ------------------------------------------------------------- */
