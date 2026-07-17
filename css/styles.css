@@ -1157,7 +1157,7 @@ html[lang="en"] .store-badge--en { display: block; }
 .patch-page-btn:disabled:hover { background: var(--white); border-color: var(--line); }
 
 /* ---- Patch notes: detail view (full release) -------------------------- */
-.patch-article { max-width: 820px; margin: 6px auto 0; }
+.patch-article { max-width: 680px; margin: 6px auto 0; }
 .patch-article__thumb {
   aspect-ratio: 16 / 9;
   margin-bottom: 36px;
@@ -1199,26 +1199,26 @@ html[lang="en"] .store-badge--en { display: block; }
   margin: 4px 0 8px;
 }
 
-.release__intro { margin: 0 0 14px; color: var(--ink); font-weight: 400; font-size: 16px; line-height: 1.7; }
-.release__intro:first-of-type { font-weight: 600; font-size: 17px; }
+.release__intro { margin: 0 0 18px; color: var(--ink); font-weight: 400; font-size: 17px; line-height: 1.9; letter-spacing: 0.2px; }
+.release__intro:first-of-type { font-weight: 600; font-size: 18px; }
 .release__intro:last-of-type { margin-bottom: 28px; }
 .release__outro {
   margin: 0;
   color: var(--ink-soft);
   font-size: 15px;
-  line-height: 1.7;
+  line-height: 1.9;
 }
 .release__outro:first-of-type {
   margin-top: 32px;
   padding-top: 18px;
   border-top: 1px solid var(--line);
 }
-.changelog { display: grid; gap: 30px; }
+.changelog { display: grid; gap: 34px; }
 .change-group h4 {
-  margin: 0 0 14px; color: var(--navy); font-size: 17px; font-weight: 700;
+  margin: 0 0 16px; color: var(--navy); font-size: 18px; font-weight: 700;
 }
-.change-group ul { list-style: none; padding-left: 24px; display: grid; gap: 11px; }
-.change-group li { position: relative; color: var(--ink); font-size: 16px; line-height: 1.7; }
+.change-group ul { list-style: none; padding-left: 24px; display: grid; gap: 14px; }
+.change-group li { position: relative; color: var(--ink); font-size: 17px; line-height: 1.85; letter-spacing: 0.2px; }
 .change-group li::before {
   content: "\2022"; position: absolute; left: -20px; color: var(--ink);
 }
