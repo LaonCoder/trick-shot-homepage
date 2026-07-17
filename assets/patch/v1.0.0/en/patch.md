@@ -3,7 +3,7 @@ version: v1.0.0
 date: May 19, 2026
 tag: Initial release
 summary: First official iOS release!
-thumb: assets/patch/v1_0_0.jpg
+thumb: assets/patch/v1.0.0/image/v1_0_0.jpg
 ---
 Hello, this is LaonPixels.
 

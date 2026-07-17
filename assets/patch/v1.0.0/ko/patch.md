@@ -3,7 +3,7 @@ version: v1.0.0
 date: 2026.05.19
 tag: 정식 출시
 summary: 첫 iOS 정식 출시!
-thumb: assets/patch/v1_0_0.jpg
+thumb: assets/patch/v1.0.0/image/v1_0_0.jpg
 ---
 안녕하세요, 라온픽셀즈(LaonPixels) 입니다.
 
