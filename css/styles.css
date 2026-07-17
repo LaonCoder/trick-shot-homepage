@@ -491,6 +491,17 @@ body.menu-open { overflow: hidden; }
 }
 .wordmark__trick { width: clamp(270px, 88vw, 900px); height: auto; }
 .wordmark__shot  { width: clamp(223px, 72vw, 745px); height: auto; }
+/* "BASKETBALL ARCADE" badge, perched above the top-left of TRICK — sized
+   and positioned as % of the wrap (== TRICK's own box) so it scales
+   together with the wordmark at every viewport width */
+.wordmark__trick-wrap { position: relative; display: inline-block; }
+.wordmark__badge {
+  position: absolute;
+  top: -22%;
+  left: 2%;
+  width: 58%;
+  height: auto;
+}
 
 /* bird flock canvas — sits behind UFO/jet, above gradient background */
 .hero__birds {
