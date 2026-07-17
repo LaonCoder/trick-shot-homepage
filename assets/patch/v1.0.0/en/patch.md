@@ -31,9 +31,9 @@ Thank you! 😊
 ## (3) Characters
 - Choose your character from Tyler, Chris, and Kyle.
 - Each character has different Power, Accuracy, and Concentration stats, letting you experience a variety of play styles.
-- Power: how hard you throw the ball. The higher this stat, the farther and stronger you can throw.
-- Accuracy: how precise your shots are. The higher this stat, the longer your drag trajectory is shown, allowing for more precise shots.
-- Concentration: how reliably you land your shots. The higher this stat, the lower the chance of a shooting mistake.
+  - Power: how hard you throw the ball. The higher this stat, the farther and stronger you can throw.
+  - Accuracy: how precise your shots are. The higher this stat, the longer your drag trajectory is shown, allowing for more precise shots.
+  - Concentration: how reliably you land your shots. The higher this stat, the lower the chance of a shooting mistake.
 - When a character makes a mistake, an exclamation mark (!) appears at the top of the screen as the ball is thrown, and the ball is thrown with a random power within ±10 of the power you set.
 
 ## (4) Settings
