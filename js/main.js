@@ -812,7 +812,13 @@
     }
 
     function step(direction) {
-      // if mid-transition onto a clone (rapid input), snap back first
+      // rapid clicks can land mid-transition, before its transitionend
+      // (and thus the clone snap-back below) has fired. Force the
+      // in-flight transition to its end position first — a no-op if the
+      // previous one already finished, otherwise it cancels the rest of
+      // its animation instantly so only the new swipe animates.
+      setTransform(false);
+      // if that left us sitting on a clone, snap to the matching real slide
       if (pos === 0) { pos = total; setTransform(false); }
       else if (pos === total + 1) { pos = total + 1 - total; setTransform(false); } // = 1
       pos += direction;
