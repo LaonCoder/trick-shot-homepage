@@ -180,11 +180,15 @@ ul { margin: 0; padding: 0; list-style: none; }
     0 8px 24px rgba(27, 58, 92, .1);
 }
 /* while the mobile menu is open, go fully opaque so the menu content
-   sitting directly beneath it can't show through the blur */
+   sitting directly beneath it can't show through the blur (also drop the
+   soft shadow/border, since their blur radius bled a hint of the menu
+   background past the header's bottom edge) */
 body.menu-open .site-header {
   background: #fff;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9);
 }
 .nav {
   height: var(--header-h);
@@ -395,17 +399,22 @@ body.menu-open .site-header {
 }
 .mobile-menu.is-open { transform: translateY(0); }
 /* menu items are full-width pixel web-buttons, stacked (capped so they
-   don't stretch into thin bars on wide/landscape phone viewports) */
+   don't stretch into thin bars on wide/landscape phone viewports).
+   flex-shrink: 0 stops the column flex layout from squashing them
+   below --btn-h when the short landscape viewport can't fit all of
+   them — the menu scrolls (overflow-y: auto, above) instead. */
 .mobile-menu .web-btn {
   --btn-h: 54px;
   width: 100%;
   max-width: 420px;
+  min-height: var(--btn-h);
+  flex-shrink: 0;
   margin-inline: auto;
   font-size: 15px;
   letter-spacing: 0;
   word-spacing: -0.1em;
 }
-.mobile-menu__lang { margin-top: auto; padding-top: 20px; display: flex; justify-content: center; }
+.mobile-menu__lang { flex-shrink: 0; margin-top: auto; padding-top: 20px; display: flex; justify-content: center; }
 
 body.menu-open { overflow: hidden; }
 
