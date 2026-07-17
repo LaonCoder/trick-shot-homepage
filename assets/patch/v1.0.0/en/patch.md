@@ -46,4 +46,6 @@ Thank you!
 ## (5) Other
 - You can check the latest patch notes in-game.
 
+---
+
 Send feedback to laonpixels@gmail.com.

@@ -1208,11 +1208,7 @@ html[lang="en"] .store-badge--en { display: block; }
   font-size: 15px;
   line-height: 1.9;
 }
-.release__outro:first-of-type {
-  margin-top: 32px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
+.release__outro:first-of-type { margin-top: 18px; }
 .changelog { display: grid; gap: 34px; }
 .change-group h4 {
   margin: 0 0 16px; color: var(--navy); font-size: 21px; font-weight: 700;
