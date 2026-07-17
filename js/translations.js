@@ -58,7 +58,7 @@ window.TS_I18N = {
     },
     download: {
       title: "지금 바로 다운로드하세요",
-      desc: "원하는 플랫폼에서 무료로 다운로드하고 첫 트릭샷에 도전해 보세요.",
+      desc: "무료로 다운로드하고 지금 바로 트릭샷에 도전해 보세요.",
       note: "* 출시 플랫폼 및 일정은 지역에 따라 다를 수 있습니다.",
     },
     footer: {
@@ -176,7 +176,7 @@ window.TS_I18N = {
     },
     download: {
       title: "Download right now",
-      desc: "Download free on your favorite platform and take your first trick shot.",
+      desc: "Download for free and take on Trick Shot right now.",
       note: "* Launch platforms and timing may vary by region.",
     },
     footer: {

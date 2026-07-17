@@ -930,7 +930,7 @@ body.menu-open { overflow: hidden; }
 html[lang="ko"] .store-badge--ko,
 html[lang="en"] .store-badge--en { display: block; }
 
-.store-note { text-align: center; margin-top: 22px; font-family: var(--sans-body); color: var(--ink-soft); font-size: 13px; }
+.store-note { text-align: center; margin-top: 40px; font-family: var(--sans-body); color: var(--ink-soft); font-size: 13px; }
 
 /* ---- Footer ------------------------------------------------------------ */
 .site-footer {
