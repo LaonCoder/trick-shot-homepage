@@ -60,45 +60,78 @@
     var body = lines.slice(i);
     while (body.length && body[0].trim() === "") body.shift();
 
-    var intro = [];
-    var outro = [];
-    var groups = [];
-    var current = null;
-    var mode = "intro"; // "intro" -> "group" -> "outro"
+    var introParas = [];
+    var outroParas = [];
+    var nodes = [];      // {type:"rule"} | {type:"section",title} | {type:"group",label,items}
+    var current = null;  // current group node, for bullet attachment
+    var mode = "intro";  // "intro" -> "body" -> "outro"
+    var paraBuf = [];
+
+    function flushPara(target) {
+      if (paraBuf.length) { target.push(paraBuf.join(" ")); paraBuf = []; }
+    }
 
     body.forEach(function (line) {
       var trimmed = line.trim();
-      var header = trimmed.match(/^\[\s*(.+?)\s*\]$/);
-      if (header) {
-        current = { label: header[1], items: [] };
-        groups.push(current);
-        mode = "group";
+
+      if (trimmed === "") {
+        if (mode === "intro") flushPara(introParas);
+        else if (mode === "outro") flushPara(outroParas);
         return;
       }
-      var bullet = line.match(/^(\s*)-\s+(.*)$/);
-      if (bullet && mode === "group" && current) {
-        var indent = bullet[1].length;
-        var text = bullet[2];
-        var last = current.items[current.items.length - 1];
-        if (indent >= 2 && last) {
-          if (typeof last === "string") {
-            last = { text: last, items: [] };
-            current.items[current.items.length - 1] = last;
-          }
-          last.items.push(text);
-        } else {
-          current.items.push(text);
+
+      if (mode !== "outro") {
+        if (trimmed === "---") {
+          flushPara(introParas);
+          nodes.push({ type: "rule" });
+          mode = "body";
+          current = null;
+          return;
         }
-        return;
+        var section = trimmed.match(/^#\s+(.+)$/);
+        if (section) {
+          flushPara(introParas);
+          nodes.push({ type: "section", title: section[1] });
+          mode = "body";
+          current = null;
+          return;
+        }
+        var group = trimmed.match(/^\[\s*(.+?)\s*\]$/) || trimmed.match(/^##\s+(.+)$/);
+        if (group) {
+          flushPara(introParas);
+          current = { type: "group", label: group[1], items: [] };
+          nodes.push(current);
+          mode = "body";
+          return;
+        }
+        var bullet = line.match(/^(\s*)-\s+(.*)$/);
+        if (bullet && mode === "body" && current) {
+          var indent = bullet[1].length;
+          var itemText = bullet[2];
+          var last = current.items[current.items.length - 1];
+          if (indent >= 2 && last) {
+            if (typeof last === "string") {
+              last = { text: last, items: [] };
+              current.items[current.items.length - 1] = last;
+            }
+            last.items.push(itemText);
+          } else {
+            current.items.push(itemText);
+          }
+          return;
+        }
       }
-      if (trimmed === "") return;
+
       if (mode === "intro") {
-        intro.push(trimmed);
+        paraBuf.push(trimmed);
       } else {
         mode = "outro";
-        outro.push(trimmed);
+        current = null;
+        paraBuf.push(trimmed);
       }
     });
+
+    flushPara(mode === "outro" ? outroParas : introParas);
 
     return {
       version: meta.version || "",
@@ -107,9 +140,9 @@
       summary: meta.summary || "",
       thumb: meta.thumb || "",
       cardTitle: meta.title || "",
-      intro: intro.join(" "),
-      groups: groups,
-      outro: outro.join(" "),
+      intro: introParas,
+      body: nodes,
+      outro: outroParas,
     };
   }
 
