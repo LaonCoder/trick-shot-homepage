@@ -165,7 +165,7 @@
     var titleFallback = PATCH_TITLE_FALLBACK[lang] || PATCH_TITLE_FALLBACK.en;
     return fetchPatchManifest().then(function (versions) {
       return Promise.all(versions.map(function (id) {
-        return fetch("assets/patch/" + id + "." + lang + ".md")
+        return fetch("assets/patch/" + id + "/" + lang + "/patch.md")
           .then(function (r) {
             if (!r.ok) throw new Error("patch md fetch failed: " + id);
             return r.text();
