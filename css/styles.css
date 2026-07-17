@@ -945,27 +945,33 @@ html[lang="en"] .store-badge--en { display: block; }
 }
 .footer-inner {
   display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.footer-top {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px 26px;
 }
+/* business/legal disclosure — its own quieter row below the main
+   footer nav, separated by a hairline like a typical site footer */
 .footer-business {
-  width: 100%;
-  order: -1;
-  margin: 0 0 4px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  gap: 2px;
+  gap: 1px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
 }
 .footer-business p {
   margin: 0;
   font-family: var(--sans-body);
-  font-size: 12px;
-  line-height: 1.6;
-  color: #7fa3c4;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #6d93b8;
 }
 .footer-copy {
   font-family: var(--sans-body);
