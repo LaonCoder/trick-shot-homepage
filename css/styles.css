@@ -950,6 +950,15 @@ html[lang="en"] .store-badge--en { display: block; }
   justify-content: space-between;
   gap: 10px 26px;
 }
+.footer-business {
+  width: 100%;
+  order: -1;
+  margin: 0 0 4px;
+  font-family: var(--sans-body);
+  font-size: 12px;
+  line-height: 1.7;
+  color: #7fa3c4;
+}
 .footer-copy {
   font-family: var(--sans-body);
   font-size: 13px;
