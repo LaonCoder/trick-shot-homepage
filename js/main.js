@@ -208,12 +208,25 @@
       '</div>';
   }
 
-  function patchDetailHTML(rel, p) {
-    var groups = (rel.groups || []).map(function (g) {
-      return patchChangeGroup(g.label, g.items);
+  function patchParagraphs(paras, className) {
+    return (paras || []).map(function (t) {
+      return '<p class="' + className + '">' + esc(t) + '</p>';
     }).join("");
-    var intro = rel.intro ? '<p class="release__intro">' + esc(rel.intro) + '</p>' : "";
-    var outro = rel.outro ? '<p class="release__outro">' + esc(rel.outro) + '</p>' : "";
+  }
+
+  function patchBodyHTML(body) {
+    return (body || []).map(function (node) {
+      if (node.type === "rule") return '<hr class="patch-article__divider">';
+      if (node.type === "section") {
+        return '<h2 class="patch-article__section-title">' + esc(node.title) + '</h2>';
+      }
+      return patchChangeGroup(node.label, node.items);
+    }).join("");
+  }
+
+  function patchDetailHTML(rel, p) {
+    var intro = patchParagraphs(rel.intro, "release__intro");
+    var outro = patchParagraphs(rel.outro, "release__outro");
     var thumb = rel.thumb
       ? '<div class="patch-article__thumb"><img src="' + esc(rel.thumb) + '" alt=""></div>' : "";
     var metaLine = rel.date
@@ -226,7 +239,7 @@
         metaLine +
         '<hr class="patch-article__rule">' +
         intro +
-        '<div class="changelog">' + groups + '</div>' +
+        '<div class="changelog">' + patchBodyHTML(rel.body) + '</div>' +
         outro +
       '</article>';
   }
