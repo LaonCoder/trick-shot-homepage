@@ -5,7 +5,7 @@ tag: Initial release
 summary: First official iOS release!
 thumb: assets/patch/v1.0.0/image/v1_0_0.jpg
 ---
-Hello, this is LaonPixels.
+Hello, this is 라온픽셀즈(LaonPixels).
 
 'Trick Shot: Basketball Arcade' has finally officially launched on the App Store! 🎉
 
