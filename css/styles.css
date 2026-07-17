@@ -1216,9 +1216,11 @@ html[lang="en"] .store-badge--en { display: block; }
 .change-group ul { list-style: none; padding-left: 24px; display: grid; gap: 14px; }
 .change-group li { position: relative; color: var(--ink); font-size: 17px; line-height: 1.85; letter-spacing: 0.2px; }
 .change-group li::before {
-  content: "\25E6"; position: absolute; left: -20px; color: var(--ink);
+  content: "\2022"; position: absolute; left: -20px; color: var(--ink);
+  font-family: Arial, "Helvetica Neue", sans-serif; font-size: 20px; line-height: 1;
 }
 .change-group li ul { margin-top: 11px; }
+.change-group li li::before { content: "\25E6"; }
 
 .back-link {
   display: inline-flex; align-items: center; gap: 8px;
