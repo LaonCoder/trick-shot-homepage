@@ -1,5 +1,5 @@
 /* =========================================================================
-   TRICK SHOT — game landing site
+   TRICKY SHOT — game landing site
    Mobile-first, vanilla CSS. Design tokens pulled from the title-screen art.
    ========================================================================= */
 
@@ -266,7 +266,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 4;
 }
 
-/* the TRICK SHOT wordmark in the header — hidden until the hero scrolls
+/* the TRICKY SHOT wordmark in the header — hidden until the hero scrolls
    past, then slides in from the left (its reserved width pushes the
    version badge over by the same amount), and on the way back up it
    slides out to the left and fades — never squashing, since the
@@ -757,14 +757,16 @@ body.menu-open { overflow: hidden; }
   background: #fff;
   border-radius: 50%;
   filter: blur(60px);
+  z-index: 0;
 }
 .stages-placeholder__stack {
   position: relative;
+  z-index: 1;   /* stay above the glow's blur so the map art reads sharp */
   width: clamp(84px, 36.3vw, 297px);
   aspect-ratio: 1;
   transition: transform .15s ease;
   cursor: pointer;
-  isolation: isolate;   /* contain the star burst's negative z-index */
+  isolation: isolate;
 }
 .stages-placeholder__stack:hover { transform: scale(1.1); }
 
